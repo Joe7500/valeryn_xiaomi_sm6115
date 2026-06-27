@@ -11,7 +11,7 @@ curl -o build_ksun3.sh -L https://raw.githubusercontent.com/Joe7500/valeryn_xiao
 mkdir build
 cd build
 rm -rf kernel
-git clone https://github.com/Joe7500/valeryn_xiaomi_sm6115 kernel
+git clone https://github.com/danish3311/valeryn_xiaomi_sm6115 kernel
 
 cd kernel || exit 1
 KERNEL_BUILD_DIR=`pwd`
