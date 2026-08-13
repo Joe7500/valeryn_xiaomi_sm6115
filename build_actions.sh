@@ -27,10 +27,6 @@ rm -rf *
 git reset --hard
 git switch android16
 git switch -c build-vanilla || exit 1
-# mglru
-git cherry-pick 8b266fd430de31b1cd49049f9a7543516b223a6d || exit 
-git revert d0d19501b373a540fbd56551b430619e2d67b5a8 --no-edit || exit
-git cherry-pick d749fbbfb5e51e845e3ed227de64eba4ad80f861 || exit
 bash  ../../build_vanilla.sh 
 if [ $? -eq 0 ] ; then
    cp 4.19*.zip ../../4.19-A16-valeryn-`date +'%d.%m.%y-%H%M'`.zip
@@ -44,9 +40,6 @@ rm -rf *
 git reset --hard
 git switch android16
 git switch -c build-ksun1 || exit 1
-git cherry-pick 8b266fd430de31b1cd49049f9a7543516b223a6d || exit 
-git revert d0d19501b373a540fbd56551b430619e2d67b5a8 --no-edit || exit
-git cherry-pick d749fbbfb5e51e845e3ed227de64eba4ad80f861 || exit
 bash ../../build_ksun1.sh
 if [ $? -eq 0 ] ; then
    cp 4.19*.zip ../../4.19-A16-valeryn-ksun-1.1.1-`date +'%d.%m.%y-%H%M'`.zip
@@ -61,9 +54,6 @@ rm -rf *
 git reset --hard
 git switch android16
 git switch -c build-ksun3 || exit 1
-git cherry-pick 8b266fd430de31b1cd49049f9a7543516b223a6d || exit 
-git revert d0d19501b373a540fbd56551b430619e2d67b5a8 --no-edit || exit
-git cherry-pick d749fbbfb5e51e845e3ed227de64eba4ad80f861 || exit
 bash ../../build_ksun3.sh
 if [ $? -eq 0 ] ; then
    cp 4.19*.zip ../../4.19-A16-valeryn-ksun-3.2.0-`date +'%d.%m.%y-%H%M'`.zip
