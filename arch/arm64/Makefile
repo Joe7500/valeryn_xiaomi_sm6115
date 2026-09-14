@@ -89,6 +89,9 @@ endif
 
 CHECKFLAGS	+= -D__aarch64__
 
+KBUILD_CFLAGS   += -march=armv8-a+crc+crypto -mtune=cortex-a73
+KBUILD_AFLAGS   += -march=armv8-a+crc+crypto
+
 ifeq ($(CONFIG_ARM64_MODULE_PLTS),y)
 KBUILD_LDFLAGS_MODULE	+= -T $(srctree)/arch/arm64/kernel/module.lds
 endif
