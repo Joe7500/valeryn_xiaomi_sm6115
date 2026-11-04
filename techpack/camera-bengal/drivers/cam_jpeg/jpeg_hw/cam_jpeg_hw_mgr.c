@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-2.0-only
 /*
- * Copyright (c) 2017-2020, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2017-2021, The Linux Foundation. All rights reserved.
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  */
 
 #include <linux/uaccess.h>
@@ -278,11 +279,15 @@ static int cam_jpeg_insert_cdm_change_base(
 		return rc;
 	}
 
-	if (config_args->hw_update_entries[CAM_JPEG_CHBASE].offset >=
-		ch_base_len) {
-		CAM_ERR(CAM_JPEG, "Not enough buf");
-		return -EINVAL;
-	}
+        if ((config_args->hw_update_entries[CAM_JPEG_CHBASE].offset +
+                (2 * sizeof(uint32_t))) >= ch_base_len) {
+                CAM_ERR(CAM_JPEG, "Not enough buf offset %d len %d",
+                        config_args->hw_update_entries[CAM_JPEG_CHBASE].offset,
+                        ch_base_len);
+                cam_mem_put_cpu_buf(
+                        config_args->hw_update_entries[CAM_JPEG_CHBASE].handle);
+                return -EINVAL;
+        }
 	CAM_DBG(CAM_JPEG, "iova %pK len %zu offset %d",
 		(void *)iova_addr, ch_base_len,
 		config_args->hw_update_entries[CAM_JPEG_CHBASE].offset);
